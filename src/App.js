@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import logo from './landing.png';
 import './App.css';
+import Nav from './Nav';
+import Header from './Header';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        
-          <img src={logo} className="App-logo" alt="logo" />
-       
+      <div>
+        <Nav />
+        <Header />    
       </div>
     );
   }
