@@ -21,7 +21,7 @@ class Header extends Component {
               <div className="input-group w-full">
                 <input type="text" name="EMAIL" className="form-control required email" placeholder="Masukan Email Anda" id="mce-EMAIL" />
                 <span className="input-group-btn">
-                  <button className="btn btn-success" type="submit"  id="mc-embedded-subscribe">Subscribe now<i className="ti-arrow-right fs-9 ml-8"></i></button>
+                  <button className="btn btn-success" style={{padding: '10px'}} type="submit"  id="mc-embedded-subscribe">Subscribe now<i className="ti-arrow-right fs-9 ml-8"></i></button>
                 </span>
               </div>
             </form>
@@ -31,7 +31,7 @@ class Header extends Component {
 
           <br /><br /><br />
           
-          <div className="social social-boxed social-rounded social-inverse text-center ml-10">
+          <div className="social social-boxed social-rounded social-inverse text-center ml-10 mt-50">
             <a className="social-facebook" href="https://www.facebook.com/nomadic.co.id"  target="_blank"  rel="noopener noreferrer"><i className="fa fa-facebook"></i></a>
             <a className="social-twitter" href="https://twitter.com/NomadicId" target="_blank"  rel="noopener noreferrer"><i className="fa fa-twitter"></i></a>
             <a className="social-instagram" href="https://www.instagram.com/nomadicoid" target="_blank"  rel="noopener noreferrer"><i className="fa fa-instagram"></i></a>
