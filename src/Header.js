@@ -19,7 +19,7 @@ class Header extends Component {
             <br />
               <form className="form-inline form-glass form-round validate" action="https://nomadic.us12.list-manage.com/subscribe/post?u=7fec1c62237dd99713d389aaf&amp;id=cd7740a835"  rel="noopener noreferrer" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form"  novalidate >
               <div className="input-group w-full">
-                <input type="text" name="EMAIL" className="form-control required email" placeholder="Masukan Email Anda" id="mce-EMAIL" />
+                <input type="email" name="EMAIL" className="form-control required email" placeholder="Masukan Email Anda" id="mce-EMAIL" />
                 <span className="input-group-btn">
                   <button className="btn btn-success" style={{padding: '10px'}} type="submit"  id="mc-embedded-subscribe">Subscribe now<i className="ti-arrow-right fs-9 ml-8"></i></button>
                 </span>
