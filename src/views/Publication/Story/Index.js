@@ -415,7 +415,7 @@ renderButton(){
                          <FormGroup row>
                             <Label sm={2} style={{height:'50px', fontSize:'16px', fontWeight:'600'}}>Storie</Label>
                              <Col sm={10} style={{border:'1px solid #eee'}}>
-                              <Editor
+                             <Editor
                                 editorState={editorState}
                                 wrapperClassName="demo-wrapper"
                                 editorClassName="demo-editor"
@@ -489,7 +489,7 @@ renderButton(){
     const { title, slug, body, imageId, imageUrl, topicsIds, typeId, headline, reading,  isPublished, publishingId } = this.state
   
     await this.props.createPostMutation({variables: { title, slug, body,  userId, imageId, imageUrl, topicsIds, headline, reading , isPublished, typeId, publishingId }})
-     toast('Save & Publish Success', { type: toast.TYPE.SUCCESS, autoClose: 2000 }, setTimeout("location.href = '/me/stories/publish';",2000))
+     toast('Save & Publish Success', { type: toast.TYPE.SUCCESS, autoClose: 2000 }, setTimeout("location.href = '/me/publications';",2000))
   }
 
 
@@ -505,7 +505,7 @@ renderButton(){
   
     await this.props.createSaveMutation({variables: { title, slug, body,  userId, imageId, imageUrl, topicsIds, headline, reading , typeId, publishingId }})
 
-      toast('Add Draft Success', { type: toast.TYPE.SUCCESS, autoClose: 2000 }, setTimeout("location.href = '/me/stories/drafts';",2000))
+      toast('Add Draft Success', { type: toast.TYPE.SUCCESS, autoClose: 2000 }, setTimeout("location.href = '/me/publications';",2000))
   
   }
 }
