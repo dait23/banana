@@ -55,8 +55,8 @@ renderThumb(){
             <div className="post-type-nevada">
 
 
-              <figure className="post-image hidden-sm hidden-xs">  <Image cloudName={Cloudinary_Name} publicId={this.props.post.imageId}  gravity="center" width="386" height="435" crop="thumb"  alt={this.props.post.title}/></figure>
-              <figure className="post-image hidden-md hidden-lg">  <Image cloudName={Cloudinary_Name} publicId={this.props.post.imageId}  gravity="center" width="300" height="150" crop="thumb"  alt={this.props.post.title}/></figure>
+              <figure className="post-image hidden-sm hidden-xs">  <Image cloudName={Cloudinary_Name} publicId={this.props.post.imageId}  quality="auto:eco" gravity="center" width="386" height="435" crop="thumb"  alt={this.props.post.title}/></figure>
+              <figure className="post-image hidden-md hidden-lg">  <Image cloudName={Cloudinary_Name} publicId={this.props.post.imageId}  quality="auto:eco" gravity="center" width="300" height="150" crop="thumb"  alt={this.props.post.title}/></figure>
                 <div className="post-content">
                 <h4 className="post-title"> <a href={`/@${this.props.post.user.username}/${this.props.post.slug}`}>{this.props.post.title}</a></h4>
                 <span className="post-author">{this.renderThumb()} &nbsp;<a href={`/@${this.props.post.user.username}`} >{this.props.post.user.member.firstName} {this.props.post.user.member.lastName}</a></span> <span className="post-date">{createDT} - {this.props.post.reading} min read</span>

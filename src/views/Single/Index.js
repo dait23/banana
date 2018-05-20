@@ -466,7 +466,7 @@ renderComment(){
                           /></span></div>
                     </div>
 
-                        <Image cloudName={Cloudinary_Name} publicId={this.state.imageId}  crop="scale"  alt={this.state.title}/>
+                        <Image cloudName={Cloudinary_Name} publicId={this.state.imageId}  quality="auto:eco" crop="scale"  alt={this.state.title}/>
 
                         <div className="single" id="paraf">
 
