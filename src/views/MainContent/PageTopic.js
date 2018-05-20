@@ -251,7 +251,7 @@ const QueryTopic = gql`query allPostsPic{
       id_starts_with:"c"
       isPublished:true
     }
-  }, orderBy: updatedAt_DESC, first: 10){
+  }, orderBy: updatedAt_DESC, first: 15){
     id
     name
     posts(orderBy: createdAt_DESC,filter:{
