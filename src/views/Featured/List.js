@@ -18,7 +18,7 @@ class List extends React.Component {
   }
 
 renderThumb(){
-      const pic = "https://res.cloudinary.com/nomadic-id/image/facebook/c_scale,r_100,w_100/" + this.props.post.user.facebookUserId + ".jpg"
+      const pic = "https://res.cloudinary.com/nomadic-id/image/facebook/c_scale,r_100,w_100,h_100/" + this.props.post.user.facebookUserId + ".jpg"
 
     if(this.props.post.user.avatar == '' ){
 
@@ -46,7 +46,7 @@ renderThumb(){
 
      const createTime= this.props.post.createdAt;
       const createDT = moment(createTime).format('ll')//20 Mart 2017
-       const pic = "https://res.cloudinary.com/nomadic-id/image/facebook/c_scale,r_100,w_100/" + this.props.post.user.facebookUserId + ".jpg"
+       const pic = "https://res.cloudinary.com/nomadic-id/image/facebook/c_scale,r_100,w_100,h_100/" + this.props.post.user.facebookUserId + ".jpg"
 
     return (     
 

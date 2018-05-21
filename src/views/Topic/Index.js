@@ -105,7 +105,7 @@ class Topic extends Component {
 
            if ( results.data.Topic == null){
 
-                //window.location= "/";
+                window.location= "/404";
 
            }else{
 

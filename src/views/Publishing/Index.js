@@ -62,6 +62,10 @@ class Publishing extends Component {
                 avatarId
                 avatarUrl
                 coverId
+                web
+                facebook
+                twitter
+                instagram
                 coverUrl
                 createdAt
                 posts(filter:{
@@ -112,7 +116,7 @@ class Publishing extends Component {
 
            if ( results.data.Publishing == null){
 
-                window.location= "/";
+                window.location= "/404";
 
            }else{
 
@@ -122,6 +126,10 @@ class Publishing extends Component {
               name:results.data.Publishing.name,
               slug:results.data.Publishing.slug,
               description:results.data.Publishing.description,
+              web:results.data.Publishing.web,
+              facebook:results.data.Publishing.facebook,
+              twitter:results.data.Publishing.twitter,
+              instagram:results.data.Publishing.instagram,
               avatarUrl:results.data.Publishing.avatarUrl,
               avatarId:results.data.Publishing.avatarId,
               coverUrl:results.data.Publishing.coverUrl,
@@ -356,7 +364,7 @@ class Publishing extends Component {
 
                               <div className="col-md-2 col-md-offset-5 col-sm-2 col-sm-offset-5">
                  
-                               <span className="post-authorx"><img src={this.state.avatarUrl} alt={this.state.name} /><a href={`/${this.state.slug}`}>{this.state.name}</a></span>
+                               <span className="post-authorx"><img src={this.state.avatarUrl} alt={this.state.name} /><a href={`${this.state.web}`}>{this.state.name}</a></span>
                                 <div className="post-metasx">
                                    <p className="text-center">{this.state.description}</p>
                                 </div>
@@ -380,6 +388,20 @@ class Publishing extends Component {
                      
                        <div className="main-title">
                         <h4><strong>Latest</strong> Publications</h4>
+                        <div className="pull-right" style={{marginTop:'40px', textTransform:'capitalize', fontSize:'13px'}}>
+
+                      
+
+                        <ul className="social-share">
+                         <a href={this.state.facebook}><li><i className="fab fa-facebook" style={{fontSize:'18px'}}></i></li></a>
+                         <a href={this.state.twitter}><li><i className="fab fa-twitter" style={{fontSize:'18px',margin:'0 5px'}}></i></li></a>
+                          <a href={this.state.instagram}><li><i className="fab fa-instagram" style={{fontSize:'18px'}}></i></li></a>
+
+                        </ul>
+
+
+
+                        </div>
                       </div>
                     <div className="row">
 

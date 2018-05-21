@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 
 import {Cloudinary_Name} from '../../views/Api/';
 import {Image} from 'cloudinary-react';
-
+import { graphql } from 'react-apollo'
+import gql from 'graphql-tag'
 import moment from 'moment';
 import 'moment/locale/id';
 moment.locale('id');
@@ -18,6 +19,48 @@ static propTypes = {
   post: PropTypes.object,
   refresh: PropTypes.func,
 };
+
+constructor(props) {
+    super(props);
+   this.state = {isToggleOn: true};
+
+
+  }
+
+
+renderBookmark(){
+
+  if(this.state.isToggleOn == true) { 
+            return (<i className="far fa-bookmark" onClick={this.handleBookmark} style={{cursor: 'pointer'}}></i>);
+        } else { 
+            return (<i className="fas fa-bookmark" onClick={this.handleUnbook} style={{cursor: 'pointer'}}></i>);
+        } 
+
+}
+
+renderLog(){
+
+  if(window.localStorage.getItem('uid') && window.localStorage.getItem('nordic') === null ){
+
+    return(
+     
+      <i className="far fa-bookmark"></i>
+
+    )
+
+
+  }else{
+
+     return(
+
+          this.renderBookmark()
+     )
+
+  }
+
+
+
+}
 
 renderThumb(){
      const pic = "https://res.cloudinary.com/nomadic-id/image/facebook/c_scale,r_80,w_80/" + this.props.post.user.facebookUserId + ".jpg"
@@ -65,7 +108,7 @@ renderThumb(){
                 
                   <h4 className="post-title" style={{height:'auto'}}><a href={`/@${this.props.post.user.username}/${this.props.post.slug}`}>{this.props.post.title}</a></h4>
                   <span className="post-author">{this.renderThumb()}<a>{this.props.post.user.member.firstName} {this.props.post.user.member.lastName}</a></span>
-                  <span className="pull-right" style={{fontSize:'15px'}}><i className="far fa-bookmark"></i></span> 
+                  <span className="pull-right" style={{fontSize:'15px'}}>{this.renderLog()}</span> 
                 </div> 
                 </div>
             
@@ -82,9 +125,32 @@ renderThumb(){
 
     )
   }
+  handleBookmark = async () => {
+    await this.props.mutatePost({
+      variables: {
+        userId: localStorage.getItem('uid'),
+        postId: this.props.post.id,
+      }
+    })
+
+     this.setState({ isToggleOn : false} );
+  }
 }
 
 
 
+const createBookmark = gql`
+  mutation createBookmark($userId: ID, $postId:ID) {
+    createBookmark(userId: $userId, postId: $postId) {
+      id
+    }
+  }
+`
 
-export default Story;
+
+
+
+const SliderWithMutation = graphql(createBookmark, {name : 'mutatePost'})(Story)
+
+export default SliderWithMutation
+

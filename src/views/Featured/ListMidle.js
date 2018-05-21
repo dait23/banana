@@ -18,7 +18,7 @@ class List extends React.Component {
   }
 
 renderThumb(){
-     const pic = "https://res.cloudinary.com/nomadic-id/image/facebook/c_scale,r_80,w_80/" + this.props.post.user.facebookUserId + ".jpg"
+     const pic = "https://res.cloudinary.com/nomadic-id/image/facebook/c_scale,r_80,w_80,h_80/" + this.props.post.user.facebookUserId + ".jpg"
 
     if(this.props.post.user.avatar == '' ){
 

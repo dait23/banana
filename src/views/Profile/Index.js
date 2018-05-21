@@ -64,6 +64,9 @@ class Profile extends Component {
                   bio
                   firstName
                   lastName
+                  facebook
+                  twitter
+                  instagram
                 }
                 posts(filter:{
     isPublished:true
@@ -106,14 +109,14 @@ class Profile extends Component {
             if (results.errors) {
              // console.log('cccc')
               //...
-              window.location= "/";
+              window.location= "/404";
             }
             //var BlogCategory = results.data.BlogCategory
 
 
            if ( results.data.User == null){
 
-                window.location= "/";
+                window.location= "/404";
 
            }else{
 
@@ -123,10 +126,13 @@ class Profile extends Component {
               username:results.data.User.username,
               facebookUserId:results.data.User.facebookUserId,
               bio:results.data.User.member.bio,
+              facebook:results.data.User.member.facebook,
+              twitter:results.data.User.member.twitter,
+              instagram:results.data.User.member.instagram,
               name: results.data.User.member.firstName + " " + results.data.User.member.lastName,
               posts:results.data.User.posts,
               avatar:results.data.User.avatar,
-              pic:"https://res.cloudinary.com/nomadic-id/image/facebook/c_scale,r_100,w_100/"+ results.data.User.facebookUserId + ".jpg",     
+              pic:"https://res.cloudinary.com/nomadic-id/image/facebook/c_scale,r_100,w_100,h_100/"+ results.data.User.facebookUserId + ".jpg",     
               loading:false
              });
 
@@ -181,7 +187,7 @@ class Profile extends Component {
  }
 
  renderAvatar(){
-     //const pic = "https://res.cloudinary.com/nomadic-id/image/facebook/c_scale,r_80,w_80/" + this.state.facebookUserId + ".jpg"
+     
 
     if(this.state.avatar == '' ){
 
@@ -377,7 +383,9 @@ class Profile extends Component {
                               <div className="col-md-2 col-md-offset-5 col-sm-2 col-sm-offset-5">
                  
                                <span className="post-author">{this.renderAvatar()}<a href={`/@${this.state.username}`}>{this.state.name}</a></span>
+                               <p className="text-center" style={{fontSize:'14px', color:'#333', marginBottom:'0'}}>@{this.state.username}</p>
                                 <div className="post-metas">
+
                                    <p className="text-center">{this.state.bio}</p>
                                 </div>
 

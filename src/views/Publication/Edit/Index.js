@@ -12,6 +12,8 @@ import gql from 'graphql-tag'
 import { Multiselect } from 'react-widgets'
 import 'react-widgets/dist/css/react-widgets.css';
 
+import NotFound from'../../../views/404/'
+
 import {MainLink, Cloudinary_Code, Cloudinary_Link, Cloudinary_Name, MainApi} from '../../Api/';
 
 const CLOUDINARY_UPLOAD_PRESET = Cloudinary_Code;
@@ -114,7 +116,7 @@ class EditPublish extends Component {
 
            if ( results.data.Publishing == null){
 
-                window.location= "/";
+                window.location= "/404";
 
            }else{
 
@@ -305,6 +307,18 @@ renderWritter(){
 
 
   render() {
+
+     if(localStorage.getItem('nordic') == null && localStorage.getItem('uid') == null ){
+
+
+    return(
+
+               <NotFound />
+
+      )
+
+
+  }
 
    
   	 if (this.props.UserQueryx.loading) {

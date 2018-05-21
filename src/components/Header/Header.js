@@ -189,7 +189,7 @@ renderButton(){
 
 
   renderThumb(){
-     const pic = "https://res.cloudinary.com/nomadic-id/image/facebook/c_scale,r_50,w_50/" + this.props.data.loggedInUser.facebookUserId + ".jpg"
+     const pic = "https://res.cloudinary.com/nomadic-id/image/facebook/c_scale,r_50,w_50,h_50/" + this.props.data.loggedInUser.facebookUserId + ".jpg"
 
     if(this.props.data.loggedInUser.avatar === '' ){
 
