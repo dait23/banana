@@ -425,12 +425,12 @@ renderComment(){
             <div>
              <MetaTags>
                 <title>{this.state.title}</title>
-                <meta name="robots" content="index, follow">
-                <meta charset="utf-8">
-                <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">  
-                <meta name="referrer" content="always">
-                <meta name="theme-color" content="#000000">
-                <meta content="index, follow">
+                <meta name="robots" content="index, follow" />
+                <meta charset="utf-8" />
+                <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />  
+                <meta name="referrer" content="always" />
+                <meta name="theme-color" content="#000000" />
+                <meta content="index, follow" />
                 <meta name="description" content={this.state.headline} />
                 <meta property="og:title" content={this.state.title} />
                 <meta property="og:description" content={this.state.headline} />

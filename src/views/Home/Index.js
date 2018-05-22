@@ -70,12 +70,12 @@ class Home extends Component {
 
           <MetaTags>
                 <title>Nomadic – Online Publishing Platform for Everyone</title>
-                <meta name="robots" content="index, follow">
-                <meta charset="utf-8">
-                <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">  
-                <meta name="referrer" content="always">
-                <meta name="theme-color" content="#000000">
-                <meta content="index, follow">
+                <meta name="robots" content="index, follow" />
+                <meta charset="utf-8" />
+                <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />  
+                <meta name="referrer" content="always" />
+                <meta name="theme-color" content="#000000" />
+                <meta content="index, follow" />
                 <meta name="description" content="Welcome to Nomadic, a place to publishing, read, write the stories. Every day, thousands of read, write, and share important stories on Nomadic." />
                 <meta property="og:title" content="Nomadic – Online Publishing Platform for Everyone" />
                 <meta property="og:description" content="Welcome to Nomadic, a place to publishing, read, write the stories. Every day, thousands of read, write, and share important stories on Nomadic." />
