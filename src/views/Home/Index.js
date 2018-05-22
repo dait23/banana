@@ -70,6 +70,7 @@ class Home extends Component {
 
           <MetaTags>
                 <title>Nomadic – Online Publishing Platform for Everyone</title>
+                <meta name="Nomadic – Online Publishing Platform for Everyone" />
                 <meta name="robots" content="index, follow" />
                 <meta charset="utf-8" />
                 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />  

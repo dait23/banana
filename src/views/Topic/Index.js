@@ -306,6 +306,7 @@ class Topic extends Component {
                 <meta name="referrer" content="always" />
                 <meta name="theme-color" content="#000000" />
                 <meta content="index, follow" />
+                <meta name={this.state.name}  />
                 <meta name="description" content={this.state.name} />
                 <meta property="og:title" content={this.state.name} />
                 <meta property="og:description" content={this.state.name} />
