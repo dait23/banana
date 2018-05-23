@@ -381,10 +381,12 @@ handlePost = async () => {
       console.warn('only logged in users can create new posts')
       return
     }
+
+    const isPublished  = false ;
     
     const {id, title, slug, body, imageId, imageUrl, topicsIds, typeId, headline, reading} = this.state
   
-    await this.props.createSaveMutation({variables: { id, title, slug, body, imageId, imageUrl, topicsIds, headline, reading  }})
+    await this.props.createSaveMutation({variables: { id, title, slug, body, imageId, imageUrl, topicsIds, headline, reading, isPublished  }})
 
       toast('Update Draft Success', { type: toast.TYPE.SUCCESS, autoClose: 2000 }, setTimeout("location.href = '/me/publications';",2000))
   
@@ -443,7 +445,8 @@ const CREATE_SAVE_MUTATION = gql`
       $imageId: String,
       $imageUrl: String,
       $topicsIds: [ID!],
-      $headline: String
+      $headline: String,
+      $isPublished: Boolean,
   ) {
     updatePost(
         id:$id,
@@ -455,6 +458,8 @@ const CREATE_SAVE_MUTATION = gql`
         imageUrl:$imageUrl,
         topicsIds: $topicsIds,
         headline: $headline,
+        isPublished: $isPublished,
+
   
 
 
