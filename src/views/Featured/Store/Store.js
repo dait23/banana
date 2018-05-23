@@ -81,9 +81,9 @@ const allRightQuery = gql`
     AND: [{
       isPublished: true
     }, {
-      isFeatured: true
+      isRight: true
     }]
-  },orderBy: createdAt_DESC, last:1) {
+  },orderBy: createdAt_DESC, first:1) {
         id
         title
         slug
