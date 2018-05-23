@@ -51,8 +51,12 @@ const allMidleQuery = gql`
       isPublished: true
     }, {
       isFeatured: true
+    },{
+      isLeft: false
+    },{
+       isRight: false 
     }]
-  },orderBy: createdAt_DESC, last:3) {
+  },orderBy: createdAt_DESC, first:3) {
         id
         title
         slug
