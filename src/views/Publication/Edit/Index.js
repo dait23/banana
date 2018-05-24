@@ -26,7 +26,7 @@ class EditPublish extends Component {
     router: PropTypes.object
   }
 
-	constructor(props) {
+  constructor(props) {
     super(props)
     this.state = { 
      
@@ -42,7 +42,7 @@ class EditPublish extends Component {
     facebook:'',
     instagram:'',
     twitter:'',
-     topics:[],
+  
     uploadedFile: null,
 
       }
@@ -236,16 +236,19 @@ class EditPublish extends Component {
 
   renderTopics(){
 
-   const inList = this.state.topics || []
-  if (this.props.FeedQueryx.loading) {
-      return (<div></div>)
+   const inList = this.state.topics || [ ]
+  if (this.props.TopicsQueryx.loading) {
+      return (
+        <div></div>
+
+        )
 
   }
   return(
 
     <Multiselect
                                onChange={this.handleChangeVit}
-                                data={this.props.FeedQueryx.allTopics.map((topicx) => (
+                                data={this.props.TopicsQueryx.allTopics.map((topicx) => (
                                    
                                    {id: topicx.id, name: topicx.name}
 
@@ -271,8 +274,8 @@ class EditPublish extends Component {
 
 renderWritter(){
 
-   const userList = this.state.writters || []
-  if (this.props.UserQueryx.loading) {
+   const userList = this.state.writters || [ ]
+  if (this.props.UserxQueryx.loading) {
       return (<div></div>)
 
   }
@@ -280,7 +283,7 @@ renderWritter(){
 
      <Multiselect
                                onChange={this.handleChangeWrit}
-                                data={this.props.UserQueryx.allUsers.map((userx) => (
+                                data={this.props.UserxQueryx.allUsers.map((userx) => (
                                    
                                    {id: userx.id, name: '@'+userx.username}
                                  
@@ -321,7 +324,7 @@ renderWritter(){
   }
 
    
-  	 if (this.props.UserQueryx.loading) {
+     if (this.state.loading) {
       return (
          
 
@@ -329,9 +332,9 @@ renderWritter(){
             
             <div className="container">
 
-	          <div className="row">
-	            <div className="col-md-2"></div>
-	             <div className="col-md-8">
+            <div className="row">
+              <div className="col-md-2"></div>
+               <div className="col-md-8">
 
 
                <div className="new-content">
@@ -340,35 +343,35 @@ renderWritter(){
 
                         <div className="main-title" style={{marginBottom:'70px'}}>
 
-	                       <h4><strong>New</strong> Publishing</h4>
-	                     </div>
+                         <h4><strong>New</strong> Publishing</h4>
+                       </div>
 
-	                      <div className="form-story">
+                        <div className="form-story">
 
                              Loading
-	                      </div>
+                        </div>
 
 
                     </div>
                 </div>
 
 
-	             </div>
-	           </div>
-	         </div>
+               </div>
+             </div>
+           </div>
 
 
      </section>
 
 
-      	)
+        )
     }
 
-  	 var sluger =  slugify(this.state.name , {
-	                replacement: '-',    // replace spaces with replacement
-	                remove: /[$*_+~.()'"!\-:@,]/g,        // regex to remove characters
-	                lower: true          // result in lower case
-	              })
+     var sluger =  slugify(this.state.name , {
+                  replacement: '-',    // replace spaces with replacement
+                  remove: /[$*_+~.()'"!\-:@,]/g,        // regex to remove characters
+                  lower: true          // result in lower case
+                })
    
    
     return (
@@ -397,105 +400,105 @@ renderWritter(){
                           <Form>
 
                             <FormGroup row>
-					          <Label sm={2} style={{height:'50px', fontSize:'16px', fontWeight:'600'}}>Name*</Label>
-					          <Col sm={10}>
-					            <Input type="text" value={this.state.name} name="name"  placeholder="your publishing name" style={{height:'50px', fontSize:'16px'}}
+                    <Label sm={2} style={{height:'50px', fontSize:'16px', fontWeight:'600'}}>Name*</Label>
+                    <Col sm={10}>
+                      <Input type="text" value={this.state.name} name="name"  placeholder="your publishing name" style={{height:'50px', fontSize:'16px'}}
                                   onChange={(e) => this.setState({name: e.target.value})}
                                   onKeyUp={(e) => this.setState({slug: document.getElementById("slugx").value})}
 
-					            />
-					            <Label  style={{height:'20px', fontSize:'12px', marginTop:'10px', marginLeft:'15px'}} id="slug">Link: nomadic.co.id/publishing/<strong>{sluger}</strong></Label>
-					            <input type="hidden" id="slugx" value={sluger} name="slug" className="form-control" placeholder="Slug" style={{display:'none'}}/>
-					          </Col>
-					        </FormGroup>
+                      />
+                      <Label  style={{height:'20px', fontSize:'12px', marginTop:'10px', marginLeft:'15px'}} id="slug">Link: nomadic.co.id/publishing/<strong>{sluger}</strong></Label>
+                      <input type="hidden" id="slugx" value={sluger} name="slug" className="form-control" placeholder="Slug" style={{display:'none'}}/>
+                    </Col>
+                  </FormGroup>
 
 
-					         <FormGroup row>
-					          <Label sm={2} style={{height:'50px', fontSize:'16px', fontWeight:'600'}}>Description*</Label>
-					          <Col sm={10}>
-					            <Input type="text" value={this.state.description} name="description"  placeholder="your publishing description" style={{height:'50px', fontSize:'16px'}}
+                   <FormGroup row>
+                    <Label sm={2} style={{height:'50px', fontSize:'16px', fontWeight:'600'}}>Description*</Label>
+                    <Col sm={10}>
+                      <Input type="text" value={this.state.description} name="description"  placeholder="your publishing description" style={{height:'50px', fontSize:'16px'}}
                                   onChange={(e) => this.setState({description: e.target.value})}
 
-					            />
-					          </Col>
-					        </FormGroup>
+                      />
+                    </Col>
+                  </FormGroup>
 
-					         <FormGroup row>
-					          <Label sm={2} style={{height:'50px', fontSize:'16px', fontWeight:'600'}}>Publishing Logo*</Label>
-					          <Col sm={6}>
-					            <Dropzone
-		                          onDrop={this.onImageAvatarDrop.bind(this)}
-		                          multiple={false}
-		                          style={{width:'100%', height:'50px', border:'1px solid #eee'}}
-		                          accept="image/*">
-		                          <div style={{textAlign:'left', color:'#888',padding:'10px'}}><i className="fas fa-camera" style={{fontSize:'30px', color:'#888'}}></i>&nbsp;&nbsp; klik / drag publishing logo</div>
-		                        </Dropzone>
+                   <FormGroup row>
+                    <Label sm={2} style={{height:'50px', fontSize:'16px', fontWeight:'600'}}>Publishing Logo*</Label>
+                    <Col sm={6}>
+                      <Dropzone
+                              onDrop={this.onImageAvatarDrop.bind(this)}
+                              multiple={false}
+                              style={{width:'100%', height:'50px', border:'1px solid #eee'}}
+                              accept="image/*">
+                              <div style={{textAlign:'left', color:'#888',padding:'10px'}}><i className="fas fa-camera" style={{fontSize:'30px', color:'#888'}}></i>&nbsp;&nbsp; klik / drag publishing logo</div>
+                            </Dropzone>
                                 <Label style={{height:'20px', fontSize:'12px', marginTop:'10px', marginLeft:'0px'}}> min 80 × 80px in size</Label>
-					          </Col>
-					           <Col sm={4}>
+                    </Col>
+                     <Col sm={4}>
 
-					              {this.state.avatarUrl === '' ? <i className="far fa-image" style={{fontSize:'50px', color:'#888'}}></i> :
+                        {this.state.avatarUrl === '' ? <i className="far fa-image" style={{fontSize:'50px', color:'#888'}}></i> :
 
-		                        
+                            
                        
 
                                        <Image cloudName={Cloudinary_Name} publicId={this.state.avatarId}  crop="scale"  width="50" height="50" alt="cover"/>
                                      
-		                        
-		                           
-		                        }
+                            
+                               
+                            }
 
 
-					           </Col>
-					        </FormGroup>
+                     </Col>
+                  </FormGroup>
 
                              <FormGroup row>
-					          <Label sm={2} style={{height:'50px', fontSize:'16px', fontWeight:'600'}}>Publishing Topic Tags</Label>
-					          <Col sm={10}>
-					             {this.renderTopics()}
-					          </Col>
-					        </FormGroup>
+                    <Label sm={2} style={{height:'50px', fontSize:'16px', fontWeight:'600'}}>Publishing Topic Tags</Label>
+                    <Col sm={10}>
+                       {this.renderTopics()}
+                    </Col>
+                  </FormGroup>
 
-					        <FormGroup row>
-					          <Label sm={2} style={{height:'50px', fontSize:'16px', fontWeight:'600'}}>Publishing Cover</Label>
-					          <Col sm={6}>
-					            <Dropzone
-		                          onDrop={this.onImageCoverDrop.bind(this)}
-		                          multiple={false}
-		                          style={{width:'100%', height:'50px', border:'1px solid #eee'}}
-		                          accept="image/*">
-		                          <div style={{textAlign:'left', color:'#888',padding:'10px'}}><i className="fas fa-camera" style={{fontSize:'30px', color:'#888'}}></i>&nbsp;&nbsp; klik / drag publishing Cover Image</div>
-		                        </Dropzone>
+                  <FormGroup row>
+                    <Label sm={2} style={{height:'50px', fontSize:'16px', fontWeight:'600'}}>Publishing Cover</Label>
+                    <Col sm={6}>
+                      <Dropzone
+                              onDrop={this.onImageCoverDrop.bind(this)}
+                              multiple={false}
+                              style={{width:'100%', height:'50px', border:'1px solid #eee'}}
+                              accept="image/*">
+                              <div style={{textAlign:'left', color:'#888',padding:'10px'}}><i className="fas fa-camera" style={{fontSize:'30px', color:'#888'}}></i>&nbsp;&nbsp; klik / drag publishing Cover Image</div>
+                            </Dropzone>
                                 <Label style={{height:'20px', fontSize:'12px', marginTop:'10px', marginLeft:'0px'}}> size 600px X 72px </Label>
-					          </Col>
-					           <Col sm={4}>
+                    </Col>
+                     <Col sm={4}>
 
-					              {this.state.coverUrl === '' ? <i className="far fa-image" style={{fontSize:'50px', color:'#888'}}></i> :
+                        {this.state.coverUrl === '' ? <i className="far fa-image" style={{fontSize:'50px', color:'#888'}}></i> :
 
-		                        
+                            
                        
 
                                        <Image cloudName={Cloudinary_Name} publicId={this.state.coverId}  crop="scale"  width="50" height="50" alt="cover"/>
                                      
-		                        
-		                           
-		                        }
+                            
+                               
+                            }
 
 
-					           </Col>
-					        </FormGroup>
+                     </Col>
+                  </FormGroup>
 
-					         <FormGroup row>
-					          <Label sm={2} style={{height:'50px', fontSize:'16px', fontWeight:'600'}}>Email</Label>
-					          <Col sm={10}>
-					            <Input type="email" value={this.state.email} name="email"  placeholder="your publishing email" style={{height:'50px', fontSize:'16px'}}
+                   <FormGroup row>
+                    <Label sm={2} style={{height:'50px', fontSize:'16px', fontWeight:'600'}}>Email</Label>
+                    <Col sm={10}>
+                      <Input type="email" value={this.state.email} name="email"  placeholder="your publishing email" style={{height:'50px', fontSize:'16px'}}
                                   onChange={(e) => this.setState({email: e.target.value})}
                                  
 
-					            />
-					           
-					          </Col>
-					        </FormGroup>
+                      />
+                     
+                    </Col>
+                  </FormGroup>
                    <FormGroup row>
                     <Label sm={2} style={{height:'50px', fontSize:'16px', fontWeight:'600'}}>Website</Label>
                     <Col sm={10}>
@@ -508,41 +511,41 @@ renderWritter(){
                     </Col>
                   </FormGroup>
 
-					        <FormGroup row>
-					          <Label sm={2} style={{height:'50px', fontSize:'16px', fontWeight:'600'}}>Facebook</Label>
-					          <Col sm={10}>
-					            <Input type="text" value={this.state.facebook} name="facebook"  placeholder="facebook link" style={{height:'50px', fontSize:'16px'}}
+                  <FormGroup row>
+                    <Label sm={2} style={{height:'50px', fontSize:'16px', fontWeight:'600'}}>Facebook</Label>
+                    <Col sm={10}>
+                      <Input type="text" value={this.state.facebook} name="facebook"  placeholder="facebook link" style={{height:'50px', fontSize:'16px'}}
                                   onChange={(e) => this.setState({facebook: e.target.value})}
                                  
 
-					            />
-					           
-					          </Col>
-					        </FormGroup>
+                      />
+                     
+                    </Col>
+                  </FormGroup>
 
-					         <FormGroup row>
-					          <Label sm={2} style={{height:'50px', fontSize:'16px', fontWeight:'600'}}>Twitter</Label>
-					          <Col sm={10}>
-					            <Input type="text" value={this.state.twitter} name="twitter"  placeholder="twitter link" style={{height:'50px', fontSize:'16px'}}
+                   <FormGroup row>
+                    <Label sm={2} style={{height:'50px', fontSize:'16px', fontWeight:'600'}}>Twitter</Label>
+                    <Col sm={10}>
+                      <Input type="text" value={this.state.twitter} name="twitter"  placeholder="twitter link" style={{height:'50px', fontSize:'16px'}}
                                   onChange={(e) => this.setState({twitter: e.target.value})}
                                  
 
-					            />
-					           
-					          </Col>
-					        </FormGroup>
+                      />
+                     
+                    </Col>
+                  </FormGroup>
 
-					          <FormGroup row>
-					          <Label sm={2} style={{height:'50px', fontSize:'16px', fontWeight:'600'}}>Instagram</Label>
-					          <Col sm={10}>
-					            <Input type="text" value={this.state.instagram} name="instagram"  placeholder="instagram link" style={{height:'50px', fontSize:'16px'}}
+                    <FormGroup row>
+                    <Label sm={2} style={{height:'50px', fontSize:'16px', fontWeight:'600'}}>Instagram</Label>
+                    <Col sm={10}>
+                      <Input type="text" value={this.state.instagram} name="instagram"  placeholder="instagram link" style={{height:'50px', fontSize:'16px'}}
                                   onChange={(e) => this.setState({instagram: e.target.value})}
                                  
 
-					            />
-					           
-					          </Col>
-					        </FormGroup>
+                      />
+                     
+                    </Col>
+                  </FormGroup>
 
                              <FormGroup row>
                     <Label sm={2} style={{height:'50px', fontSize:'16px', fontWeight:'600'}}>Publishing Writters</Label>
@@ -554,21 +557,21 @@ renderWritter(){
                     </Col>
 
                   </FormGroup>
-					        <br />
-					        <br />
-					
+                  <br />
+                  <br />
+          
 
 
-					        {this.state.name && this.state.description &&
+                  {this.state.name && this.state.description &&
             <div>         
                           <div onClick={this.handlePost} style={{background:'#000', padding:'10px 15px', color:'#fff', width:'150px', cursor:'pointer', textAlign:'center',float:'left'}}>Update & Publish</div>
             </div>
           }
 
                                  <br />
-					        <br />
-					        <br />
-					        <br />
+                  <br />
+                  <br />
+                  <br />
 
 
                           </Form>
@@ -625,14 +628,14 @@ const LOGGED_IN_USER_QUERY = gql`
   }
 `
 
-const FeedQueryx = gql`query allTopics {
+const TopicsQueryx = gql`query allTopics {
   allTopics(orderBy:name_ASC) {
     id
     name
   }
 }`
 
-const UserQueryx = gql`query allUsers {
+const UserxQueryx = gql`query allUsers {
   allUsers(orderBy:name_ASC) {
     id
     username
@@ -688,8 +691,8 @@ const CREATE_POST_MUTATION = gql`
 
 
 export default compose(
-  graphql(FeedQueryx, { name: 'FeedQueryx' }),
-  graphql(UserQueryx, { name: 'UserQueryx' }),
+  graphql(TopicsQueryx, { name: 'TopicsQueryx' }),
+  graphql(UserxQueryx, { name: 'UserxQueryx' }),
   graphql(CREATE_POST_MUTATION, { name: 'createPublishMutation' }),
   graphql(LOGGED_IN_USER_QUERY, { 
     name: 'loggedInUserQuery',
