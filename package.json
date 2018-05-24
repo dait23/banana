@@ -70,7 +70,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && react-snapshot && echo '/*    /index.html   200' > build/_redirects && echo User-agent: Googlebot Disallow: User-agent: googlebot-image Disallow: User-agent: googlebot-mobile Disallow: User-agent: MSNBot Disallow: User-agent: Slurp Disallow: User-agent: ia_archiver Disallow: User-agent: baiduspider Disallow: User-agent: yahoo-mmcrawler Disallow: User-agent: yahoo-blogs/v3.9 Disallow: User-agent: * Disallow: Crawl-delay: 5 Disallow: /build/ > build/robots.txt",
+    "build": "react-scripts build && react-snapshot && echo '/*    /index.html   200' > build/_redirects",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
