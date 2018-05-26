@@ -26,6 +26,26 @@ import {MainLink, Cloudinary_Code, Cloudinary_Link, Cloudinary_Name, MainApi} fr
 const CLOUDINARY_UPLOAD_PRESET = Cloudinary_Code;
 const CLOUDINARY_UPLOAD_URL = Cloudinary_Link;
 
+function uploadImageCallBack(file) {
+  return new Promise(
+    (resolve, reject) => {
+      const xhr = new XMLHttpRequest();
+      xhr.open('POST', 'https://api.imgur.com/3/image');
+      xhr.setRequestHeader('Authorization', 'Client-ID 6a22d984d907e2a');
+      const data = new FormData();
+      data.append('image', file);
+      xhr.send(data);
+      xhr.addEventListener('load', () => {
+        const response = JSON.parse(xhr.responseText);
+        resolve(response);
+      });
+      xhr.addEventListener('error', () => {
+        const error = JSON.parse(xhr.responseText);
+        reject(error);
+      });
+    }
+  );
+}
 
 class Text extends React.Component {
 
@@ -239,11 +259,19 @@ class Text extends React.Component {
                             <Label sm={2} style={{height:'50px', fontSize:'16px', fontWeight:'600'}}>Storie</Label>
                             <Col sm={10} style={{border:'1px solid #eee'}}>
 
-                             <Editor
+                            <Editor
                                 editorState={editorState}
                                 wrapperClassName="demo-wrapper"
                                 editorClassName="demo-editor"
                                 onEditorStateChange={this.onEditorStateChange}
+                                toolbar={{
+                                inline: { inDropdown: true },
+                                list: { inDropdown: true },
+                                textAlign: { inDropdown: true },
+                                link: { inDropdown: true },
+                                history: { inDropdown: true },
+                                image: { uploadCallback: uploadImageCallBack, alt: { present: true, mandatory: true } },
+                              }}
                               />
                               
                                <textarea  hidden className="form-control" id="area" name="description" rows="5" value={draftToHtml(convertToRaw(editorState.getCurrentContent()))}  style={{display:'none'}}
