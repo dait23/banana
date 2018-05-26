@@ -50,7 +50,7 @@ renderThumb(){
        // const pic = "https://res.cloudinary.com/nomadic-id/image/facebook/c_scale,r_80,w_80/" + this.props.post.user.facebookUserId + ".jpg"
        /////////
        var myString = this.props.post.headline;
-       const newHeadline = myString.substr(0, myString.length-50); 
+       const newHeadline = myString.substr(0, myString.length-80); 
 
     return (     
 
@@ -59,11 +59,11 @@ renderThumb(){
 
             <div className="row">
              
-             <div className="col-md-4">
-                     <figure className="post-image" style={{paddingRight:'0px'}}> <Image cloudName={Cloudinary_Name} publicId={this.props.post.imageId}  gravity="center" width="135" height="135" crop="thumb"  alt={this.props.post.title}/></figure>
+             <div className="col-md-3">
+                     <figure className="post-image" style={{paddingRight:'0px'}}> <Image cloudName={Cloudinary_Name} publicId={this.props.post.imageId}  gravity="center" width="110" height="110" crop="thumb"  alt={this.props.post.title}/></figure>
               
              </div>
-             <div className="col-md-8">
+             <div className="col-md-9">
              
               <div className="post-content" style={{width:'100%'}}>
                

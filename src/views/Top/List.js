@@ -72,7 +72,7 @@ renderThumb(){
       const createDT = moment(createTime).format('ll')//20 Mart 2017
 
       var myString = this.props.post.headline;
-       const newHeadline = myString.substr(0, myString.length-30); 
+       const newHeadline = myString.substr(0, myString.length-80); 
 
     return (     
 
