@@ -156,7 +156,7 @@ class Text extends React.Component {
 
    var sluger =  slugify(this.state.title , {
                 replacement: '-',    // replace spaces with replacement
-                remove: /[$*_+~.()'"!\-:@,]/g,        // regex to remove characters
+                remove: /[$*_+~.()'"!\-:@,?]/g,        // regex to remove characters
                 lower: true          // result in lower case
               })
 
