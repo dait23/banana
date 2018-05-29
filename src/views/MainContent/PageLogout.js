@@ -246,7 +246,7 @@ class PageLogout extends Component {
 
 
 const QueryLog = gql`query allPosts {
- allPosts(orderBy: createdAt_DESC,filter:{
+ allPosts(orderBy: updatedAt_DESC,filter:{
     isPublished:true
   }, first:20) {
         id
