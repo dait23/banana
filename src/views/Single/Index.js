@@ -486,7 +486,7 @@ renderComment(){
                         
                         <div className="single" id="paraf">
                          {this.renderUpdated()}
-                         <article>
+                         <article id="story" style={{marginTop:'30px'}}>
 
                          <div dangerouslySetInnerHTML={{ __html: this.state.body }}></div>
                         </article>
