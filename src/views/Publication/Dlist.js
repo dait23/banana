@@ -103,7 +103,7 @@ class Dlist extends Component {
                  {this.renderImage()}
             
                    <div className="post-content">
-                    <a href={`/${this.props.post.slug}`}>  <h4 className="post-title">{this.props.post.name}  {this.renderStatus()}</h4> </a> 
+                    <a href={`/publishing/${this.props.post.slug}`}>  <h4 className="post-title">{this.props.post.name}  {this.renderStatus()}</h4> </a> 
                     <div dangerouslySetInnerHTML={{ __html: this.props.post.description }} style={{fontSize:'13px'}}></div>
                     
                      <span className="post-date" style={{marginLeft:'-0px', marginTop:'-5px'}}>{createDT} </span> 
