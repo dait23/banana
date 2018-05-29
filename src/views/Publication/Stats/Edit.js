@@ -36,6 +36,7 @@ class StoryDraft extends Component {
     reading:'',
     title: '',
     slug: '',
+    sumber:'',
     imageUrl:'',
     typeId:'cjfwsmfgc22dg0169rao0do0i',
     imageId:'',
@@ -90,6 +91,7 @@ class StoryDraft extends Component {
               body
               imageId
               imageUrl
+              sumber
               reading
               headline
               createdAt
@@ -147,6 +149,7 @@ class StoryDraft extends Component {
               title:results.data.Post.title,
               slug:results.data.Post.slug,
               body:results.data.Post.body,
+              sumber:results.data.Post.sumber,
               createdAt:results.data.Post.createdAt,
               topics:results.data.Post.topics,
               imageUrl:results.data.Post.imageUrl,
@@ -277,6 +280,7 @@ class StoryDraft extends Component {
                         body={this.state.body}
                         imageId={this.state.imageId}
                         imageUrl={this.state.imageUrl}
+                        sumber={this.state.sumber}
                         topics={this.state.topics}
                         pubUser={this.state.pubUser}
 

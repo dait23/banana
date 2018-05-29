@@ -55,6 +55,7 @@ class Text extends React.Component {
      body: PropTypes.string,
      imageId:PropTypes.string,
      imageUrl:PropTypes.string,
+     sumber:PropTypes.string,
      topics:PropTypes.array,
 
   }
@@ -69,6 +70,7 @@ class Text extends React.Component {
       reading:'',
       title: '',
       slug: '',
+      sumber:'',
       imageUrl:'',
       typeId:'cjfvip5jfven40179i4s1w72l',
       imageId:'',
@@ -86,6 +88,7 @@ class Text extends React.Component {
         editorState,
         id:this.props.id,
         title: this.props.title,
+        sumber: this.props.sumber,
         imageUrl:this.props.imageUrl,
         imageId:this.props.imageId,
         typeId:'cjfvip5jfven40179i4s1w72l',
@@ -236,6 +239,10 @@ class Text extends React.Component {
                                     accept="image/*">
                                     <div style={{textAlign:'left', color:'#888',padding:'10px'}}><i className="fas fa-camera" style={{fontSize:'30px', color:'#888'}}></i>&nbsp;&nbsp; klik / drag cover</div>
                                   </Dropzone>
+                                  <input type="text"  value={this.state.sumber} name="sumber" className="form-control" placeholder="Courtesy your Image cover from" style={{marginTop:'10px'}} 
+                                 onChange={(e) => this.setState({sumber: e.target.value})}
+
+                                />
                                       <Label style={{height:'20px', fontSize:'12px', marginTop:'10px', marginLeft:'0px'}}> min 500 × 200px in size</Label>
                           </Col>
                            <Col sm={4}>
@@ -325,9 +332,9 @@ handlePost = async () => {
      
     const isPublished = true ;
     const userId = localStorage.getItem('uid');
-    const { id, title, slug, body, imageId, imageUrl, topicsIds, typeId, headline, reading } = this.state
+    const { id, title, slug, body, imageId, imageUrl, topicsIds, typeId, headline, reading, sumber } = this.state
   
-    await this.props.createPostMutation({variables: { id, title, slug, body,  userId, imageId, imageUrl, topicsIds, headline, reading, isPublished  }})
+    await this.props.createPostMutation({variables: { id, title, slug, body,  userId, imageId, imageUrl, topicsIds, headline, reading, isPublished, sumber  }})
      toast('update & Publish Success', { type: toast.TYPE.SUCCESS, autoClose: 2000 }, setTimeout("location.href = '/me/stories/publish';",2000))
   }
 
@@ -340,9 +347,9 @@ handlePost = async () => {
     }
     
     const userId = localStorage.getItem('uid');
-    const {id, title, slug, body, imageId, imageUrl, topicsIds, typeId, headline, reading, isPublished} = this.state
+    const {id, title, slug, body, imageId, imageUrl, topicsIds, typeId, headline, reading, isPublished, sumber} = this.state
   
-    await this.props.createSaveMutation({variables: { id, title, slug, body,  userId, imageId, imageUrl, topicsIds, headline, reading, isPublished  }})
+    await this.props.createSaveMutation({variables: { id, title, slug, body,  userId, imageId, imageUrl, topicsIds, headline, reading, isPublished, sumber  }})
 
       toast('Update Draft Success', { type: toast.TYPE.SUCCESS, autoClose: 2000 }, setTimeout("location.href = '/me/stories/drafts';",2000))
   
@@ -370,7 +377,8 @@ const CREATE_POST_MUTATION = gql`
       $userId: ID,
       $topicsIds: [ID!],
       $headline: String,
-      $isPublished: Boolean
+      $isPublished: Boolean,
+       $sumber: String,
       
   ) {
     updatePost(
@@ -384,7 +392,8 @@ const CREATE_POST_MUTATION = gql`
         imageUrl:$imageUrl,
         topicsIds: $topicsIds,
         headline: $headline,
-        isPublished: $isPublished
+        isPublished: $isPublished,
+         sumber: $sumber
         
 
 
@@ -407,6 +416,7 @@ const CREATE_SAVE_MUTATION = gql`
       $topicsIds: [ID!],
       $headline: String,
       $isPublished: Boolean,
+       $sumber: String,
   ) {
     updatePost(
         id:$id,
@@ -420,6 +430,7 @@ const CREATE_SAVE_MUTATION = gql`
         topicsIds: $topicsIds,
         headline: $headline,
           isPublished: $isPublished,
+         sumber: $sumber
   
 
 

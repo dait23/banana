@@ -56,6 +56,7 @@ class Text extends React.Component {
      body: PropTypes.string,
      imageId:PropTypes.string,
      imageUrl:PropTypes.string,
+     sumber:PropTypes.string,
      topics:PropTypes.array,
      pubUser:PropTypes.string,
 
@@ -71,6 +72,7 @@ class Text extends React.Component {
       reading:'',
       title: '',
       slug: '',
+      sumber:'',
       imageUrl:'',
       typeId:'cjfwsmfgc22dg0169rao0do0i',
       imageId:'',
@@ -89,6 +91,7 @@ class Text extends React.Component {
         id:this.props.id,
         title: this.props.title,
         imageUrl:this.props.imageUrl,
+         sumber: this.props.sumber,
         imageId:this.props.imageId,
         typeId:'cjfwsmfgc22dg0169rao0do0i',
         isPublished: true,
@@ -284,6 +287,10 @@ renderButton(){
                                     accept="image/*">
                                     <div style={{textAlign:'left', color:'#888',padding:'10px'}}><i className="fas fa-camera" style={{fontSize:'30px', color:'#888'}}></i>&nbsp;&nbsp; klik / drag cover</div>
                                   </Dropzone>
+                                   <input type="text"  value={this.state.sumber} name="sumber" className="form-control" placeholder="Courtesy your Image cover from" style={{marginTop:'10px'}} 
+                                 onChange={(e) => this.setState({sumber: e.target.value})}
+
+                                />
                                       <Label style={{height:'20px', fontSize:'12px', marginTop:'10px', marginLeft:'0px'}}> min 500 × 200px in size</Label>
                           </Col>
                            <Col sm={4}>
@@ -368,9 +375,9 @@ handlePost = async () => {
       return
     }
      
-    const { id, title, slug, body, imageId, imageUrl, topicsIds,  headline, reading,  isPublished } = this.state
+    const { id, title, slug, body, imageId, imageUrl, topicsIds,  headline, reading,  isPublished, sumber } = this.state
   
-    await this.props.createPostMutation({variables: { id, title, slug, body, imageId, imageUrl, topicsIds, headline, reading , isPublished }})
+    await this.props.createPostMutation({variables: { id, title, slug, body, imageId, imageUrl, topicsIds, headline, reading , isPublished, sumber }})
      toast('update & Publish Success', { type: toast.TYPE.SUCCESS, autoClose: 2000 }, setTimeout("location.href = '/me/publications';",2000))
   }
 
@@ -384,9 +391,9 @@ handlePost = async () => {
 
     const isPublished  = false ;
     
-    const {id, title, slug, body, imageId, imageUrl, topicsIds, typeId, headline, reading} = this.state
+    const {id, title, slug, body, imageId, imageUrl, topicsIds, typeId, headline, reading, sumber} = this.state
   
-    await this.props.createSaveMutation({variables: { id, title, slug, body, imageId, imageUrl, topicsIds, headline, reading, isPublished  }})
+    await this.props.createSaveMutation({variables: { id, title, slug, body, imageId, imageUrl, topicsIds, headline, reading, isPublished, sumber  }})
 
       toast('Update Draft Success', { type: toast.TYPE.SUCCESS, autoClose: 2000 }, setTimeout("location.href = '/me/publications';",2000))
   
@@ -411,6 +418,7 @@ const CREATE_POST_MUTATION = gql`
       $reading: String,
       $imageId: String,
       $imageUrl: String,
+      $sumber: String,
       $topicsIds: [ID!],
       $headline: String,
       $isPublished: Boolean,
@@ -426,6 +434,7 @@ const CREATE_POST_MUTATION = gql`
         topicsIds: $topicsIds,
         headline: $headline,
         isPublished: $isPublished,
+        sumber:$sumber
   
 
 
@@ -447,6 +456,7 @@ const CREATE_SAVE_MUTATION = gql`
       $topicsIds: [ID!],
       $headline: String,
       $isPublished: Boolean,
+      $sumber: String,
   ) {
     updatePost(
         id:$id,
@@ -459,7 +469,7 @@ const CREATE_SAVE_MUTATION = gql`
         topicsIds: $topicsIds,
         headline: $headline,
         isPublished: $isPublished,
-
+         sumber:$sumber
   
 
 

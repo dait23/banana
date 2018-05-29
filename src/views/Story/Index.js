@@ -54,6 +54,7 @@ class NewStory extends Component {
     reading:'',
     title: '',
     slug: '',
+    sumber:'',
     imageUrl:'',
     typeId:'cjfvip5jfven40179i4s1w72l',
     imageId:'',
@@ -279,6 +280,10 @@ class NewStory extends Component {
                                     accept="image/*">
                                     <div style={{textAlign:'left', color:'#888',padding:'10px'}}><i className="fas fa-camera" style={{fontSize:'30px', color:'#888'}}></i>&nbsp;&nbsp; klik / drag cover</div>
                                   </Dropzone>
+                                <input type="text"  value={this.state.sumber} name="sumber" className="form-control" placeholder="Courtesy your Image cover from" style={{marginTop:'10px'}} 
+                                 onChange={(e) => this.setState({sumber: e.target.value})}
+
+                                />
                                       <Label style={{height:'20px', fontSize:'12px', marginTop:'10px', marginLeft:'0px'}}> min 500 × 200px in size</Label>
                           </Col>
                            <Col sm={4}>
@@ -378,9 +383,9 @@ class NewStory extends Component {
     }
      
     const userId = localStorage.getItem('uid');
-    const { title, slug, body, imageId, imageUrl, topicsIds, typeId, headline, reading,  isPublished } = this.state
+    const { title, slug, body, imageId, imageUrl, topicsIds, typeId, headline, reading,  isPublished, sumber } = this.state
   
-    await this.props.createPostMutation({variables: { title, slug, body,  userId, imageId, imageUrl, topicsIds, headline, reading , isPublished, typeId }})
+    await this.props.createPostMutation({variables: { title, slug, body,  userId, imageId, imageUrl, topicsIds, headline, reading , isPublished, typeId, sumber }})
      toast('Save & Publish Success', { type: toast.TYPE.SUCCESS, autoClose: 2000 }, setTimeout("location.href = '/me/stories/publish';",2000))
   }
 
@@ -393,9 +398,9 @@ class NewStory extends Component {
     }
     
     const userId = localStorage.getItem('uid');
-    const { title, slug, body, imageId, imageUrl, topicsIds, typeId, headline, reading} = this.state
+    const { title, slug, body, imageId, imageUrl, topicsIds, typeId, headline, reading, sumber} = this.state
   
-    await this.props.createSaveMutation({variables: { title, slug, body,  userId, imageId, imageUrl, topicsIds, headline, reading , typeId }})
+    await this.props.createSaveMutation({variables: { title, slug, body,  userId, imageId, imageUrl, topicsIds, headline, reading , typeId, sumber }})
 
       toast('Add Draft Success', { type: toast.TYPE.SUCCESS, autoClose: 2000 }, setTimeout("location.href = '/me/stories/drafts';",2000))
   
@@ -427,6 +432,7 @@ const CREATE_POST_MUTATION = gql`
       $reading: String,
       $imageId: String,
       $imageUrl: String,
+      $sumber: String,
       $userId: ID,
       $typeId: ID,
       $topicsIds: [ID!],
@@ -445,7 +451,8 @@ const CREATE_POST_MUTATION = gql`
         topicsIds: $topicsIds,
         headline: $headline,
         isPublished: $isPublished,
-        typeId: $typeId
+        typeId: $typeId,
+        sumber: $sumber
 
 
     ) {
@@ -465,7 +472,8 @@ const CREATE_SAVE_MUTATION = gql`
       $userId: ID,
       $typeId: ID,
       $topicsIds: [ID!],
-      $headline: String
+      $headline: String,
+       $sumber: String,
   ) {
     createPost(
 
@@ -478,7 +486,9 @@ const CREATE_SAVE_MUTATION = gql`
         imageUrl:$imageUrl,
         topicsIds: $topicsIds,
         headline: $headline,
-        typeId: $typeId
+        typeId: $typeId,
+        sumber: $sumber
+
 
 
     ) {

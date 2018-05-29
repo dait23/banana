@@ -102,6 +102,7 @@ onRead() {
               reading
               createdAt
               updatedAt
+              sumber
               imageId
               imageUrl
               read
@@ -179,6 +180,7 @@ onRead() {
               title:results.data.Post.title,
               slug:results.data.Post.slug,
               headline:results.data.Post.headline,
+              sumber:results.data.Post.sumber,
               body:results.data.Post.body,
               read:results.data.Post.read,
               reading:results.data.Post.reading,
@@ -292,15 +294,19 @@ renderUpdated(){
 
   const updatedDT = moment(this.state.updatedAt).format('ll')
 
-  if(this.state.updatedAt < this.state.createdAt){
+  if(this.state.updatedAt == this.state.createdAt){
 
-   return
+   return(
+  
+    <span></span>
+
+   )
 
   }else{
 
     return(
 
-     <span>updated : {updatedDT}</span>
+     <span style={{textDecoration: 'underline', marginBottom:'20px'}}>Diupdate tanggal : {updatedDT}</span>
     )
 
   }
@@ -463,20 +469,23 @@ renderComment(){
                        <div className="col-md-1"  style={{marginLeft:'-10px'}}>{this.renderThumb()}</div>
                         <div className="col-md-5 col-sm-12">
                           <h5 className="author-name"><a href ={`/@${this.state.username}`}>{this.state.firstName} {this.state.lastName}</a>  {this.renderPublish()}</h5>
-                          <p className="author-info">{this.state.bio}. <br /><span  style={{color:'#baba',fontSize:'11px' }}>{createDT} - {this.state.reading} min read</span></p>
+                          <p className="author-info">{this.state.bio}. <br /><span  style={{color:'#999',fontSize:'11px' }}>{createDT} - {this.state.reading} min read</span></p>
                         </div>
                         
                        <div className="col-md-6"><span className="pull-right hidden-xs hidden-sm" style={{color:'#666',fontSize:'12px',padding:'10px 0 0 0'}}> 
                           <Share 
                            id={this.state.id}
 
-                          /></span></div>
+                          /></span>
+                          
+                          </div>
                     </div>
-
+                       
                         <Image cloudName={Cloudinary_Name} publicId={this.state.imageId}  quality="auto:eco" crop="scale"  alt={this.state.title}/>
-
+                        <span style={{fontSize:'12px'}}> Photo by: {this.state.sumber}</span>
+                        
                         <div className="single" id="paraf">
-
+                         {this.renderUpdated()}
                          <article>
 
                          <div dangerouslySetInnerHTML={{ __html: this.state.body }}></div>

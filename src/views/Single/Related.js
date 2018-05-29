@@ -108,7 +108,7 @@ static propTypes = {
 const RelatedQuery = gql`query allPostRelated {
    allPosts(orderBy: read_DESC,filter:{
     isPublished:true
-  }, last:3) {
+  }, first:3) {
         id
         title
         slug

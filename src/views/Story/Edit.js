@@ -36,6 +36,7 @@ class EditDraft extends Component {
     reading:'',
     title: '',
     slug: '',
+    sumber:'',
     imageUrl:'',
     typeId:'cjfvip5jfven40179i4s1w72l',
     imageId:'',
@@ -91,6 +92,7 @@ class EditDraft extends Component {
               imageId
               imageUrl
               reading
+              sumber
               headline
               createdAt
               type{
@@ -129,7 +131,7 @@ class EditDraft extends Component {
 
            if ( results.data.Post == null){
 
-                window.location= "/";
+                window.location= "/404";
 
            }else{
 
@@ -144,6 +146,7 @@ class EditDraft extends Component {
               createdAt:results.data.Post.createdAt,
               topics:results.data.Post.topics,
               imageUrl:results.data.Post.imageUrl,
+              sumber:results.data.Post.sumber,
               imageId:results.data.Post.imageId,
               reading:results.data.Post.reading,
               headline:results.data.Post.headline,
@@ -268,6 +271,7 @@ class EditDraft extends Component {
                         imageId={this.state.imageId}
                         imageUrl={this.state.imageUrl}
                         topics={this.state.topics}
+                        sumber={this.state.sumber}
 
                        />
 
