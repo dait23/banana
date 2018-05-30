@@ -200,7 +200,7 @@ onRead() {
               bio:results.data.Post.user.member.bio,
               facebookUserId:results.data.Post.user.facebookUserId,
               name: results.data.Post.user.member.firstName + " " + results.data.Post.user.member.lastName,
-              pic:"https://res.cloudinary.com/nomadic-id/image/facebook/c_scale,r_50,w_50/"+ results.data.Post.user.facebookUserId + ".jpg",
+              pic:"https://res.cloudinary.com/nomadic-id/image/facebook/c_scale,r_50,w_50,h_50/"+ results.data.Post.user.facebookUserId + ".jpg",
              
               loading:false
              });
@@ -239,7 +239,7 @@ renderThumb(){
        <div>
          <img src={this.state.avatar} className="img-circle hidden-xs hidden-sm"  alt={this.state.title}/>
 
-         <img src={this.state.avatar} className="img-circle hidden-md hidden-lg"  alt={this.state.title} style={{width:'50px', float:'left', marginRight:'10px'}}/>
+         <img src={this.state.avatar} className="img-circle hidden-md hidden-lg"  alt={this.state.title} style={{width:'50px', height:'50px', float:'left', marginRight:'10px'}}/>
      </div>
       )
 
