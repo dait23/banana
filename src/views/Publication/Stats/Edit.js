@@ -10,12 +10,9 @@ import gql from 'graphql-tag'
 
 
 
-import { EditorState, convertToRaw, ContentState } from 'draft-js';
-import { Editor } from 'react-draft-wysiwyg';
-import draftToHtml from 'draftjs-to-html';
-import htmlToDraft from 'html-to-draftjs';
 
-import '../../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+
+
 
 import Text from './Text'
 
@@ -41,7 +38,7 @@ class StoryDraft extends Component {
     typeId:'cjfwsmfgc22dg0169rao0do0i',
     imageId:'',
     data:[],
-    editorState: EditorState.createEmpty(),
+    //editorState: EditorState.createEmpty(),
     isPublished: true,
      userId: localStorage.getItem('uid'),
      uploadedFile: null,
@@ -58,11 +55,11 @@ class StoryDraft extends Component {
    
   }
 
-  onEditorStateChange: Function = (editorState) => {
-    this.setState({
-      editorState, body: document.getElementById("area").value, reading: document.getElementById("word").value, headline: document.getElementById("headline").value
-    });
-  };
+  // onEditorStateChange: Function = (editorState) => {
+  //   this.setState({
+  //     editorState, body: document.getElementById("area").value, reading: document.getElementById("word").value, headline: document.getElementById("headline").value
+  //   });
+  // };
 
 
 

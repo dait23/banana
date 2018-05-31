@@ -6,43 +6,55 @@ import slugify from 'slugify';
 import {Image} from 'cloudinary-react';
 import {withRouter } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify';
-import { EditorState, convertToRaw, ContentState } from 'draft-js';
-import { Editor } from 'react-draft-wysiwyg';
-import draftToHtml from 'draftjs-to-html';
-import htmlToDraft from 'html-to-draftjs';
-
-import '../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import {
+  ImageSideButton,
+  Block,
+  addNewBlock,
+  createEditorState,
+  Editor,
+  AtomicBlockUtils,
+  EditorState
+} from 'medium-draft';
 import NotFound from'../../views/404/'
 import { graphql, compose } from 'react-apollo'
 import gql from 'graphql-tag'
 import { Multiselect } from 'react-widgets'
 import 'react-widgets/dist/css/react-widgets.css';
-
+import mediumDraftExporter from 'medium-draft/lib/exporter';
 
 import {MainLink, Cloudinary_Code, Cloudinary_Link, Cloudinary_Name} from '../../views/Api/';
 
 const CLOUDINARY_UPLOAD_PRESET = Cloudinary_Code;
 const CLOUDINARY_UPLOAD_URL = Cloudinary_Link;
 
-function uploadImageCallBack(file) {
-  return new Promise(
-    (resolve, reject) => {
-      const xhr = new XMLHttpRequest();
-      xhr.open('POST', 'https://api.imgur.com/3/image');
-      xhr.setRequestHeader('Authorization', 'Client-ID 6a22d984d907e2a');
-      const data = new FormData();
-      data.append('image', file);
-      xhr.send(data);
-      xhr.addEventListener('load', () => {
-        const response = JSON.parse(xhr.responseText);
-        resolve(response);
-      });
-      xhr.addEventListener('error', () => {
-        const error = JSON.parse(xhr.responseText);
-        reject(error);
-      });
-    }
-  );
+class CustomImageSideButton extends ImageSideButton {
+
+
+  onChange(e) {
+    const file = e.target.files[0];
+    let upload = request.post(CLOUDINARY_UPLOAD_URL)
+                     .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
+                     .field('file', file);
+
+    upload.end((err, response) => {
+      if (err) {
+        console.error(err);
+      }
+
+      if (response.body.secure_url !== '') {
+        console.log(response.body);
+          this.props.setEditorState(addNewBlock(
+                this.props.getEditorState(),
+                Block.IMAGE, {
+                  src: response.body.secure_url,
+                }
+              ));
+        }
+    });
+  
+    this.props.close();
+  }
+
 }
 
 class NewStory extends Component {
@@ -59,24 +71,24 @@ class NewStory extends Component {
     typeId:'cjfvip5jfven40179i4s1w72l',
     imageId:'',
     isPublished: true,
-     editorState: EditorState.createEmpty(),
      userId: localStorage.getItem('uid'),
      uploadedFile: null,
-  
-
+     editorState: createEditorState(),
+      editorEnabled: true,
       placeholder: 'Write here...',
     }
     this.handleChangeVit = this.handleChangeVit.bind(this)
-    
+    this.sideButtons = [{
+      title: 'Image',
+      component: CustomImageSideButton,
+    }];
 
 
 
-    // this.onChange = (editorState) => {
-    //   this.setState({ editorState, body: document.getElementById("area").value, reading: document.getElementById("word").value, headline: document.getElementById("headline").value  });
+    this.onChange = (editorState) => {
+      this.setState({ editorState, body: document.getElementById("area").value, reading: document.getElementById("word").value, headline: document.getElementById("headline").value  });
    
-    // };
-
-
+    };
    
   }
 
@@ -84,11 +96,7 @@ class NewStory extends Component {
   //   this.editor.focus();
   // }
 
-  onEditorStateChange: Function = (editorState) => {
-    this.setState({
-      editorState, body: document.getElementById("area").value, reading: document.getElementById("word").value, headline: document.getElementById("headline").value
-    });
-  };
+   
 
 ////////////////////////////
 
@@ -134,7 +142,7 @@ class NewStory extends Component {
 
   render() {
 
-    if(window.localStorage.getItem('uid') == null && window.localStorage.getItem('nordic') == null ){
+    if(window.localStorage.getItem('uid') && window.localStorage.getItem('nordic') === null ){
 
 
     return(
@@ -151,7 +159,7 @@ class NewStory extends Component {
    
     const { editorState } = this.state;
     // document.getElementById("area").classList.remove("md-block-unstyled");
-    const Html = draftToHtml(convertToRaw(editorState.getCurrentContent()));
+    const Html = mediumDraftExporter(editorState.getCurrentContent());
     var sluger =  slugify(this.state.title , {
                 replacement: '-',    // replace spaces with replacement
                 remove: /[$*_+~.()'"!\-:@,?]/g,        // regex to remove characters
@@ -178,42 +186,7 @@ class NewStory extends Component {
 
     var effectiveTime = (minutes < 1) ? "a couple of secs" : minutes;
       if (this.props.data.loading) {
-      return (
-
-
-         <div>
-            <div className="candy-wrapper">
-          <div className="main">
-            <div className="row inner" style={{paddingTop:'100px'}}>
-
-            <div className="col-md-2"></div>
-              
-
-            <div className="col-md-8">
-                <div className="main-title">
-                  <h4><strong>New</strong> Storie</h4>
-                </div>
-
-                <div className="col-xs-12">
-                    
-                     Loading....
-
-                </div>
-            </div>
-
-           
-
-              {/* end for row */}
-
-            </div>
-           </div>
-    
-        </div>
-            </div>
-
-
-
-        )
+      return (<div></div>)
     }
    
     return (
@@ -246,12 +219,14 @@ class NewStory extends Component {
                                           onKeyUp={(e) => this.setState({slug: document.getElementById("slug").value})}
 
                               />
-                              <input type="hidden" id="slug" value={sluger} name="slug" className="form-control" placeholder="Slug" style={{display:'none'}}/>
+                              <input type="hidden" id="slug" value={sluger} name="slug" className="form-control" placeholder="Slug" style={{display:'none'}}
+                               onChange={(e) => this.setState({slug: e.target.value})}
+                              />
                             </Col>
                           </FormGroup>
 
                           <FormGroup row>
-                            <Label sm={2} style={{height:'50px', fontSize:'16px', fontWeight:'600'}}>Storie Tags*</Label>
+                            <Label sm={2} style={{height:'50px', fontSize:'16px', fontWeight:'600'}}>Storie Tags</Label>
                             <Col sm={10}>
                                <Multiselect
                                        onChange={this.handleChangeVit}
@@ -280,7 +255,7 @@ class NewStory extends Component {
                                     accept="image/*">
                                     <div style={{textAlign:'left', color:'#888',padding:'10px'}}><i className="fas fa-camera" style={{fontSize:'30px', color:'#888'}}></i>&nbsp;&nbsp; klik / drag cover</div>
                                   </Dropzone>
-                                <input type="text"  value={this.state.sumber} name="sumber" className="form-control" placeholder="Courtesy your Image cover from" style={{marginTop:'10px'}} 
+                                   <input type="text"  value={this.state.sumber} name="sumber" className="form-control" placeholder="Courtesy your Image cover from" style={{marginTop:'10px'}} 
                                  onChange={(e) => this.setState({sumber: e.target.value})}
 
                                 />
@@ -305,29 +280,21 @@ class NewStory extends Component {
 
                          <FormGroup row>
                             <Label sm={2} style={{height:'50px', fontSize:'16px', fontWeight:'600'}}>Storie</Label>
-                            <Col sm={10} style={{border:'1px solid #eee'}}>
+                              <Col sm={10} style={{border:'1px solid #eee'}}>
                                <Editor
+                                autoFocus
                                 editorState={editorState}
-                                wrapperClassName="demo-wrapper"
-                                editorClassName="demo-editor"
-                                onEditorStateChange={this.onEditorStateChange}
-                                toolbar={{
-                                inline: { inDropdown: true },
-                                list: { inDropdown: true },
-                                textAlign: { inDropdown: true },
-                                link: { inDropdown: true },
-                                history: { inDropdown: true },
-                                image: { uploadCallback: uploadImageCallBack, alt: { present: true, mandatory: true } },
-                              }}
+                                onChange={this.onChange}
+                                placeholder='your storie idea'
+                                sideButtons={this.sideButtons}
                               />
-                               <textarea  hidden className="form-control" id="area" name="description" rows="5" value={draftToHtml(convertToRaw(editorState.getCurrentContent()))}  style={{display:'none'}}
+                               <textarea  hidden className="form-control" id="area" name="description" rows="5" value={mediumDraftExporter(editorState.getCurrentContent())}  style={{display:'none'}}
                                onChange={(e) => this.setState({body: e.target.value})}></textarea>
                                 <input type="hidden" id="word" value={effectiveTime} name="word" className="form-control" placeholder="Time"  style={{display:'none'}}
-                                onChange={(e) => this.setState({reading: e.target.value})}
+                                 onChange={(e) => this.setState({reading: e.target.value})}
                                 />
                                 <input type="hidden" id="headline" value={steril} name="headline" className="form-control" placeholder="Headline" style={{display:'none'}}
                                  onChange={(e) => this.setState({headline: e.target.value})}
-
                                 />
                        
                             </Col>
@@ -336,20 +303,13 @@ class NewStory extends Component {
                           <br />
                           <br />
 
-                           <FormGroup row>
-                            <Label sm={2} style={{height:'50px', fontSize:'16px', fontWeight:'600'}}></Label>
-                            <Col sm={10}>
-                                 
-                       {this.state.title && this.state.body && this.state.topicsIds &&
+
+                       {this.state.title && this.state.body && this.state.topicsIds && this.state.sumber &&
             <div>    
                          <div onClick={this.handleSave} style={{background:'#000', padding:'10px 15px', color:'#fff', width:'150px', cursor:'pointer', textAlign:'center',float:'left', marginRight:'20px'}}>Save Draft</div> &nbsp;&nbsp;&nbsp;     
                           <div onClick={this.handlePost} style={{background:'#000', padding:'10px 15px', color:'#fff', width:'150px', cursor:'pointer', textAlign:'center',float:'left'}}>Save & Publish</div>
             </div>
           }     
-                             </Col>
-                            </FormGroup>
-
-
 
 
                                  <br />

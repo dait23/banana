@@ -10,13 +10,6 @@ import gql from 'graphql-tag'
 
 
 
-import { EditorState, convertToRaw, ContentState } from 'draft-js';
-import { Editor } from 'react-draft-wysiwyg';
-import draftToHtml from 'draftjs-to-html';
-import htmlToDraft from 'html-to-draftjs';
-
-import '../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-
 import Text from './Text'
 
 import {MainLink, Cloudinary_Code, Cloudinary_Link, Cloudinary_Name, MainApi} from '../../views/Api/';
@@ -40,8 +33,7 @@ class EditDraft extends Component {
     imageUrl:'',
     typeId:'cjfvip5jfven40179i4s1w72l',
     imageId:'',
-    data:[],
-    editorState: EditorState.createEmpty(),
+    //editorState: EditorState.createEmpty(),
     isPublished: true,
      userId: localStorage.getItem('uid'),
      uploadedFile: null,
@@ -58,11 +50,11 @@ class EditDraft extends Component {
    
   }
 
-  onEditorStateChange: Function = (editorState) => {
-    this.setState({
-      editorState, body: document.getElementById("area").value, reading: document.getElementById("word").value, headline: document.getElementById("headline").value
-    });
-  };
+  // onEditorStateChange: Function = (editorState) => {
+  //   this.setState({
+  //     editorState, body: document.getElementById("area").value, reading: document.getElementById("word").value, headline: document.getElementById("headline").value
+  //   });
+  // };
 
 
 
