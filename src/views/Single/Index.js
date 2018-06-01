@@ -121,6 +121,7 @@ onRead() {
               comments(orderBy: createdAt_DESC){
                   id
                   text
+                  createdAt
                   user{
                     id
                     username
