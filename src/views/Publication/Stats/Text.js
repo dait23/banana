@@ -108,7 +108,7 @@ class Text extends React.Component {
         imageUrl:this.props.imageUrl,
         imageId:this.props.imageId,
         typeId:'cjfvip5jfven40179i4s1w72l',
-        isPublished: false,
+        isPublished: true,
        userId: localStorage.getItem('uid'),
        uploadedFile: null,
        topics:this.props.topics,
