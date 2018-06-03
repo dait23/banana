@@ -36,7 +36,7 @@ class List extends React.Component {
 
                   
                       <h4 className="category"><a href={`/@${this.props.post.user.username}/${this.props.post.slug}`}>{this.props.post.title}</a></h4>
-                      <p className="small pull-left" style={{color:'#9d9d9d'}}>{createDT}  -  {this.props.post.reading} min read</p>
+                      <p className="small pull-left" style={{color:'#9d9d9d'}}>{createDT}  &nbsp; <i className="fas fa-star" style={{fontSize:'8px'}}></i>&nbsp;  {this.props.post.reading} min read</p>
                      
                   
 

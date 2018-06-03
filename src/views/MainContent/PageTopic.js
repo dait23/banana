@@ -254,6 +254,7 @@ const QueryTopic = gql`query allPostsPic{
   }, orderBy: updatedAt_DESC, first: 15){
     id
     name
+    slug
     posts(orderBy: createdAt_DESC,filter:{
     isPublished:true
     }, first:5){

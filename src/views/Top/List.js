@@ -89,7 +89,7 @@ renderThumb(){
                          <h4 className="post-title"> <a href={`/@${this.props.post.user.username}/${this.props.post.slug}`}>{this.props.post.title}</a></h4>
                         <p className="hidden-sm hidden-xs">{newHeadline}</p>
                         <span className="post-author">
-                            {this.renderThumb()}<Link to={`/@${this.props.post.user.username}`}>{this.props.post.user.member.firstName} {this.props.post.user.member.lastName}</Link>
+                            <a href={`/@${this.props.post.user.username}`}>{this.props.post.user.member.firstName} {this.props.post.user.member.lastName}</a>
                         </span>
                        <span className="pull-right" style={{fontSize:'15px'}}>{this.renderBookmark()}</span>
                       </div>

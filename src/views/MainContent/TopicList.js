@@ -61,7 +61,7 @@ renderBookmark(){
 
     return(
         
-         <span>  <a href ={`/publishing/${this.props.post.publishing.slug}`}>in {this.props.post.publishing.name}</a></span>
+         <span>  <a href ={`/publishing/${this.props.post.publishing.slug}`}>in {this.props.post.publishing.name}</a> - </span>
 
       )
   }else{
@@ -134,7 +134,7 @@ renderThumb(){
                           <span className="post-author hidden-md hidden-lg">{this.renderThumb()}<a href={`/@${this.props.post.user.username}`} style={{marginLeft:'0px'}}>{this.props.post.user.member.firstName} {this.props.post.user.member.lastName}</a> </span>
 
 
-                           <span className="post-date">{this.renderPublish()} - {createDT},  {this.props.post.reading} min read</span> 
+                           <span className="post-date">{this.renderPublish()}  {createDT} &nbsp; <i className="fas fa-star" style={{fontSize:'8px'}}></i>&nbsp; {this.props.post.reading} min read</span> 
                           <span className="pull-right"  style={{fontSize:'18px'}} >{this.renderBookmark()}</span>
                          </div>
 
