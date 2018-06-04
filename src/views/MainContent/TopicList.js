@@ -82,7 +82,7 @@ renderThumb(){
 
      return(
 
-         <img src={pic} className="img-circle hidden-sm hidden-xs" style={{margin:'5px 0 0 5px', width:'33px'}} />
+         <img src={pic} className="img-circle hidden-sm hidden-xs" style={{margin:'0px 10px 0 0px', width:'33px'}} />
 
       )
 
@@ -90,7 +90,7 @@ renderThumb(){
 
         return(
 
-         <img src={this.props.post.user.avatar} className="img-circle hidden-sm hidden-xs" style={{margin:'0px 5px 0 5px', width:'30px'}} />
+         <img src={this.props.post.user.avatar} className="img-circle hidden-sm hidden-xs" style={{margin:'0px 10px 0 0px', width:'30px'}} />
 
       )
 
