@@ -202,6 +202,7 @@ onRead() {
               facebookUserId:results.data.Post.user.facebookUserId,
               name: results.data.Post.user.member.firstName + " " + results.data.Post.user.member.lastName,
               pic:"https://res.cloudinary.com/nomadic-id/image/facebook/c_scale,r_50,w_50,h_50/"+ results.data.Post.user.facebookUserId + ".jpg",
+              url:"https://www.nomadic.co.id/" +"@" + results.data.Post.user.username + "/" + results.data.Post.slug,
              
               loading:false
              });
@@ -453,6 +454,32 @@ renderComment(){
                 <meta name="twitter:description" content={this.state.headline} />
                 <meta name="twitter:creator" content="@NomadicId" />
                 <meta name="twitter:image:src" content={this.state.imageUrl} />
+
+
+                <script type="application/ld+json">{`
+                    {
+                      "@context": "http://schema.org",
+                      "@type": "BlogPosting",
+                      "headline": {this.state.title},
+                      "image": {
+                        "@type": "ImageObject",
+                        "url": {this.state.imageUrl},
+                        "width": 800,
+                        "height": 600
+                      },
+                      "mainEntityOfPage": {
+                        "@type": "WebPage",
+                        "@id": {this.state.url}
+                      },
+                      "description": {this.state.headline},
+                      "datePublished": {this.state.createdAt},
+                      "dateModified": {this.state.updatedAt},
+                      "author": {
+                        "@type": "Person",
+                        "name": {'@${this.state.username}'}
+                      }
+                    }
+                    `}</script>
 
 
             </MetaTags>
