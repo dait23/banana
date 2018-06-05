@@ -20,14 +20,18 @@
 
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
-    <script>
-      var OneSignal = window.OneSignal || [];
-      OneSignal.push(function() {
-        OneSignal.init({
-          appId: "72c60121-66f9-43a3-90da-74337f25536d",
+      <script>
+        var OneSignal = window.OneSignal || [];
+        OneSignal.push(function() {
+          OneSignal.init({
+            appId: "72c60121-66f9-43a3-90da-74337f25536d",
+            autoRegister: false,
+            notifyButton: {
+              enable: true,
+            },
+          });
         });
-      });
-    </script>
+      </script>
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
