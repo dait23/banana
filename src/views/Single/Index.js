@@ -509,7 +509,7 @@ renderComment(){
                           </div>
                     </div>
                        
-                        <Image cloudName={Cloudinary_Name} publicId={this.state.imageId}  height="600" quality="auto:eco" crop="scale"  alt={this.state.title}/>
+                        <Image cloudName={Cloudinary_Name} publicId={this.state.imageId}  height="600" width="800" quality="auto:eco" crop="scale"  alt={this.state.title}/>
                         <span style={{fontSize:'12px'}}> Photo by: {this.state.sumber}</span>
                         
                         <div className="single" id="paraf">
