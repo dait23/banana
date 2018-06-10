@@ -203,7 +203,7 @@ onRead() {
               name: results.data.Post.user.member.firstName + " " + results.data.Post.user.member.lastName,
               pic:"https://res.cloudinary.com/nomadic-id/image/facebook/c_scale,r_50,w_50,h_50/"+ results.data.Post.user.facebookUserId + ".jpg",
               url:"https://www.nomadic.co.id/" +"@" + results.data.Post.user.username + "/" + results.data.Post.slug,
-             
+              thumb: "https://res.cloudinary.com/nomadic-id/image/upload/c_scale,h_600,q_auto:eco/"+ results.data.Post.imageId,
               loading:false
              });
 
@@ -443,7 +443,7 @@ renderComment(){
                 <meta name="description" content={this.state.headline} />
                 <meta property="og:title" content={this.state.title} />
                 <meta property="og:description" content={this.state.headline} />
-                <meta property="og:image" content={this.state.imageUrl} />
+                <meta property="og:image" content={this.state.thumb} />
                 <meta property="og:type" content="article" />
                 <meta property="og:url" content={`https://nomadic.co.id/@${this.state.username}/${this.state.slug}`} />
 
@@ -453,7 +453,7 @@ renderComment(){
                 <meta name="twitter:title" content={this.state.title} />
                 <meta name="twitter:description" content={this.state.headline} />
                 <meta name="twitter:creator" content="@NomadicId" />
-                <meta name="twitter:image:src" content={this.state.imageUrl} />
+                <meta name="twitter:image:src" content={this.state.thumb} />
 
 
                 <script type="application/ld+json">{`
