@@ -58,7 +58,48 @@ class Home extends Component {
 
 
 
- }   
+ }  
+
+
+ renderIdul(){
+  
+   const banner = "https://res.cloudinary.com/nomadic-id/image/upload/v1528992131/unf8tgdqynot37rmvhm5.jpg";
+   
+   if(localStorage.getItem('nordic') == null && localStorage.getItem('uid') == null ){
+
+
+     return(
+     
+          <Jumbotron style={{background:'#D7EFEE', borderRadius:'0px', padding:'5px 15px'}}>
+
+              <div className="row">
+
+                 <div className="col-md-12" style={{backgroundImage: `url(${banner})`, backgroundRepeat:'no-repeat', backgroundPosition:'top center', height:'400px'}}>
+
+
+
+                 </div>
+
+              </div>
+
+          </Jumbotron>
+
+
+      )
+
+
+   }else{
+    
+     return(
+      
+       <Top />
+
+
+      )
+  
+   } 
+
+ } 
 
 
   render() {
@@ -99,7 +140,7 @@ class Home extends Component {
         <div className="container">
 
             <Featured />
-            {this.renderBanner()}
+            {this.renderIdul()}
             <MainContent />
 
 
