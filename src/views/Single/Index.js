@@ -460,24 +460,34 @@ renderComment(){
                     {
                       "@context": "http://schema.org",
                       "@type": "BlogPosting",
-                      "headline": '${this.state.title}',
+                      "headline": "${this.state.title}",
                       "image": {
                         "@type": "ImageObject",
-                        "url": '${this.state.imageUrl}',
+                        "url": "${this.state.imageUrl}",
                         "width": 800,
                         "height": 600
                       },
                       "mainEntityOfPage": {
                         "@type": "WebPage",
-                        "@id": '${this.state.url}'
+                        "@id": "${this.state.url}"
                       },
-                      "description": '${this.state.headline}',
-                      "datePublished": '${this.state.createdAt}',
-                      "dateModified": '${this.state.updatedAt}',
+                      "description": "${this.state.headline}",
+                      "datePublished": "${this.state.createdAt}",
+                      "dateModified": "${this.state.updatedAt}",
                       "author": {
                         "@type": "Person",
-                        "name": {'@${this.state.username}'}
+                        "name": "@${this.state.username}"
+                      },
+                       "publisher": {
+                      "@type": "Organization",
+                      "name": "Nomadic.co.id",
+                      "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://res.cloudinary.com/nomadic-id/image/upload/v1527016527/mawqrv3a2zdugkoqkmld.jpg",
+                        "width": 60,
+                        "height": 60
                       }
+                    }
                     }
                     `}</script>
 
