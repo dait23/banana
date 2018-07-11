@@ -140,7 +140,7 @@ class Home extends Component {
         <div className="container">
 
             <Featured />
-            {this.renderIdul()}
+            {this.renderBanner()}
             <MainContent />
 
 
