@@ -308,7 +308,7 @@ renderUpdated(){
 
     return(
 
-     <span style={{textDecoration: 'underline', marginBottom:'20px'}}>Diupdate tanggal : {updatedDT}</span>
+     <span style={{ marginBottom:'20px', backgroundColor: '#4fb689', padding:'5px', color:'yellow'}}>Diupdate tanggal : {updatedDT}</span>
     )
 
   }
