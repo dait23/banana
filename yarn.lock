@@ -5497,7 +5497,7 @@ media-typer@0.3.0:
   resolved "https://registry.yarnpkg.com/media-typer/-/media-typer-0.3.0.tgz#8710d7af0aa626f8fffa1ce00168545263255748"
   integrity sha1-hxDXrwqmJvj/+hzgAWhUUmMlV0g=
 
-medium-draft@^0.5.6:
+medium-draft@0.5.10:
   version "0.5.10"
   resolved "https://registry.yarnpkg.com/medium-draft/-/medium-draft-0.5.10.tgz#e367c8f40f3beb09a6c1f870f35f1355c1bec3c5"
   integrity sha512-FeRYk9O9b9OgOa5WKJbRkLtUXma9697ptPAocnroJV5zp5w0114EHljWPBUmp1kkEf7/hT2wNShcL9uwfIZMtA==

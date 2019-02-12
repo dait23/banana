@@ -29,7 +29,7 @@
     "lazyimage": "^2.1.2",
     "loadable-components": "^1.2.0",
     "lodash": "^4.17.5",
-    "medium-draft": "^0.5.6",
+    "medium-draft": "0.5.10",
     "mobx": "^4.1.1",
     "mobx-apollo": "0.0.18",
     "mobx-react": "^5.0.0",
