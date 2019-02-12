@@ -251,11 +251,11 @@ const QueryTopic = gql`query allPostsPic{
       id_starts_with:"c"
       isPublished:true
     }
-  }, orderBy: updatedAt_DESC, first: 15){
+  }, orderBy: updatedAt_DESC, last: 15){
     id
     name
     slug
-    posts(orderBy: createdAt_DESC,filter:{
+    posts(orderBy: updatedAt_DESC,filter:{
     isPublished:true
     }, first:5){
       id

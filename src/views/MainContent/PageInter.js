@@ -262,9 +262,9 @@ const Queryx = gql`query allPostsx($id: ID!) {
       name
       slug
       id
-      posts(orderBy: createdAt_DESC,filter:{
+      posts(orderBy: updatedAt_DESC,filter:{
     isPublished:true
-      }, last:5){
+      }, first:5){
         id
         title
         slug

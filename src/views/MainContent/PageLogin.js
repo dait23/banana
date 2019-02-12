@@ -120,7 +120,7 @@ constructor(props) {
 
 
    }
-   if(this.state.topics == '' ){
+   else if(this.state.topics == '' ){
 
 
        return(
